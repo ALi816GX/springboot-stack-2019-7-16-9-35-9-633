@@ -13,6 +13,7 @@ import org.springframework.test.web.servlet.MockMvc;
 
 import java.util.Map;
 
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
@@ -91,7 +92,7 @@ public class CompanyControllerTest {
 
 
     @Test
-    public void should_return_400_when_call_add_companies_given_employee_null() throws Exception {
+    public void should_return_400_when_call_add_companies_given_company_null() throws Exception {
 
 //        String jsonResult = "Success";
 //        Employee employee = new Employee(1, "2", "3", 4);
@@ -103,6 +104,22 @@ public class CompanyControllerTest {
 
                 .andDo(print())
                 .andExpect(status().is(400));
+
+    }
+
+
+    @Test
+    public void should_return_success_when_call_delete_companies_given_company_id() throws Exception {
+
+
+        String jsonResult = "Success";
+
+        mockMvc.perform(delete("/companies/0")
+                .contentType(MediaType.APPLICATION_JSON_UTF8))
+                .andDo(print())
+                .andExpect(status().isOk())
+                .andExpect(content().contentType("text/plain;charset=UTF-8"))
+                .andExpect(content().string(jsonResult));
 
     }
 

@@ -89,4 +89,27 @@ public class EmployeeController {
 
 
 
+    @DeleteMapping("/{id}")
+    public String deleteEmployee(@PathVariable int id){
+
+        Employee employee = null;
+
+        for (Employee temp:list){
+            if (id == temp.getId()){
+                employee = temp;
+                break;
+            }
+        }
+
+        if(this.getEmployees().remove(employee)){
+            System.out.println(list.toString());
+            return "Success";
+        }else {
+            return "Fail";
+        }
+
+    }
+
+
+
 }

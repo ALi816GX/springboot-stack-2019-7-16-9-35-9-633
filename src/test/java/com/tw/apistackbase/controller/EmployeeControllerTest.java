@@ -8,6 +8,8 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
+
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
@@ -96,6 +98,21 @@ public class EmployeeControllerTest {
 
                 .andDo(print())
                 .andExpect(status().is(400));
+
+    }
+
+    @Test
+    public void should_return_success_when_call_delete_employees_given_employee_id() throws Exception {
+
+
+        String jsonResult = "Success";
+
+        mockMvc.perform(delete("/employees/0")
+                .contentType(MediaType.APPLICATION_JSON_UTF8))
+                .andDo(print())
+                .andExpect(status().isOk())
+                .andExpect(content().contentType("text/plain;charset=UTF-8"))
+                .andExpect(content().string(jsonResult));
 
     }
 }

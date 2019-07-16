@@ -86,6 +86,30 @@ public class CompanyController {
 
 
 
+    @DeleteMapping("/{id}")
+    public String deleteCompany(@PathVariable int id){
+
+        Company company = null;
+
+        for (Company temp:list){
+            if (id == temp.getId()){
+                company = temp;
+                break;
+            }
+        }
+
+        if(this.getCompanies().remove(company)){
+            System.out.println(list.toString());
+            return "Success";
+        }else {
+            return "Fail";
+        }
+
+    }
+
+
+
+
 
 
 
