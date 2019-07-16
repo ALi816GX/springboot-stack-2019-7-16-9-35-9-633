@@ -73,6 +73,22 @@ public class CompanyController {
         return result;
     }
 
+    @PostMapping
+    public String addCompany(@RequestBody Company company){
+
+        if(this.list.add(company)){
+            return "Success";
+        }else {
+            return "Fail";
+        }
+
+    }
+
+
+
+
+
+
 
 
 }

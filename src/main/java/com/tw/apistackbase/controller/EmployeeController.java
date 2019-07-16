@@ -74,6 +74,19 @@ public class EmployeeController {
 
     }
 
+    @PostMapping
+    public String addEmployee(@RequestBody Employee employee){
+
+        System.out.println(this.list);
+
+        if(this.list.add(employee)){
+            return "Success";
+        }else {
+            return "Fail";
+        }
+
+    }
+
 
 
 }

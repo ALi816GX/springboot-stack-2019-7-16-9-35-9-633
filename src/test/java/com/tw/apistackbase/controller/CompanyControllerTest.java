@@ -1,13 +1,20 @@
 package com.tw.apistackbase.controller;
 
+import com.tw.apistackbase.model.Employee;
+import net.minidev.json.JSONObject;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.http.MediaType;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
+
+import java.util.Map;
+
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -79,6 +86,23 @@ public class CompanyControllerTest {
                 .andExpect(status().isOk())
                 .andExpect(content().contentType("application/json;charset=UTF-8"))
                 .andExpect(content().json(jsonResult));
+
+    }
+
+
+    @Test
+    public void should_return_400_when_call_add_companies_given_employee_null() throws Exception {
+
+//        String jsonResult = "Success";
+//        Employee employee = new Employee(1, "2", "3", 4);
+//        String employeeContent = "";
+
+        mockMvc.perform(post("/companies")
+                .contentType(MediaType.APPLICATION_JSON_UTF8))
+
+
+                .andDo(print())
+                .andExpect(status().is(400));
 
     }
 

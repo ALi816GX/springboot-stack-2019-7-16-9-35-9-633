@@ -19,6 +19,10 @@ public class Employee implements Serializable {
     private String gender;
     private int age;
 
+    public Employee(){
+
+    }
+
 
     public Employee(int id, String name, String gender, int age) {
         this.id = id;
