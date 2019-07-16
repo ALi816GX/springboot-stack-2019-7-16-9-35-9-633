@@ -111,5 +111,28 @@ public class EmployeeController {
     }
 
 
+    @PutMapping("/{id}")
+    public String updateCompany(@PathVariable int id,
+                                @RequestBody Employee employee){
+
+        int index = 0;
+        for (Employee temp:list){
+            if (id == temp.getId()){
+                list.remove(temp);
+                break;
+            }
+            index++;
+        }
+
+        if(index != 0){
+            this.getEmployees().add(index,employee);
+            return "Success";
+        }else {
+            return "Fail";
+        }
+
+    }
+
+
 
 }

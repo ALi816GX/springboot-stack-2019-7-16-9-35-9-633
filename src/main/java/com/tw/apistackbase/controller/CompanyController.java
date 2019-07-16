@@ -109,6 +109,32 @@ public class CompanyController {
 
 
 
+    @PutMapping("/{id}")
+    public String updateCompany(@PathVariable int id,
+                                @RequestBody Company company){
+
+        int index = 0;
+        for (Company temp:list){
+            if (id == temp.getId()){
+                list.remove(temp);
+                break;
+            }
+            index++;
+        }
+
+        if(index != 0){
+            this.getCompanies().add(index,company);
+            return "Success";
+        }else {
+            return "Fail";
+        }
+
+    }
+
+
+
+
+
 
 
 
