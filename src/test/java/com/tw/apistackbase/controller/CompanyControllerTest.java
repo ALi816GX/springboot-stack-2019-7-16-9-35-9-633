@@ -40,4 +40,17 @@ public class CompanyControllerTest {
                 .andExpect(content().json(jsonResult));
 
     }
+
+    @Test
+    public void should_return_company_when_call_get_companies_given_id_1() throws Exception {
+
+        String jsonResult = "{\"id\":1,\"name\":\"OOCL1\",\"age\":1,\"employees\":null}";
+
+        mockMvc.perform(get("/companies/1"))
+                .andDo(print())
+                .andExpect(status().isOk())
+                .andExpect(content().contentType("application/json;charset=UTF-8"))
+                .andExpect(content().json(jsonResult));
+
+    }
 }

@@ -41,4 +41,19 @@ public class EmployeeControllerTest {
                 .andExpect(content().json(jsonResult));
 
     }
+
+
+
+    @Test
+    public void should_return_employee_when_call_get_employees_given_id_0() throws Exception {
+
+        String jsonResult = "{\"id\":0,\"name\":\"Leo0\",\"gender\":\"male\",\"age\":10}";
+
+        mockMvc.perform(get("/employees/0"))
+                .andDo(print())
+                .andExpect(status().isOk())
+                .andExpect(content().contentType("application/json;charset=UTF-8"))
+                .andExpect(content().json(jsonResult));
+
+    }
 }
