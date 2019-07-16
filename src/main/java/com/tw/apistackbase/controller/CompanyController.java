@@ -1,9 +1,8 @@
 package com.tw.apistackbase.controller;
 
 import com.tw.apistackbase.model.Company;
+import com.tw.apistackbase.model.Employee;
 import org.springframework.web.bind.annotation.*;
-
-import javax.websocket.server.PathParam;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -49,7 +48,6 @@ public class CompanyController {
     }
 
 
-
     @GetMapping(params = {"page", "pageSize"})
     public List<Company> getCompaniesByPaging(@RequestParam("page")int page,
                                               @RequestParam("pageSize")int pageSize){
@@ -64,5 +62,17 @@ public class CompanyController {
 
         return result;
     }
+
+
+    @GetMapping("/{id}/employees")
+    public List<Employee> getEmployeesByCompanyId(@PathVariable int id){
+
+        Company company = list.get(id);
+        List<Employee> result = company.getEmployees();
+
+        return result;
+    }
+
+
 
 }

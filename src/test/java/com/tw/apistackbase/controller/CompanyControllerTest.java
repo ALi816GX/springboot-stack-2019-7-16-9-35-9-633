@@ -69,4 +69,19 @@ public class CompanyControllerTest {
     }
 
 
+    @Test
+    public void should_return_employees_when_call_get_employees_given_company_id() throws Exception {
+
+        String jsonResult = "[{\"id\":0,\"name\":\"Leo0\",\"gender\":\"male\",\"age\":10},{\"id\":1,\"name\":\"Leo1\",\"gender\":\"male\",\"age\":11},{\"id\":2,\"name\":\"Leo2\",\"gender\":\"male\",\"age\":12}]";
+
+        mockMvc.perform(get("/companies/0/employees"))
+                .andDo(print())
+                .andExpect(status().isOk())
+                .andExpect(content().contentType("application/json;charset=UTF-8"))
+                .andExpect(content().json(jsonResult));
+
+    }
+
+
+
 }
