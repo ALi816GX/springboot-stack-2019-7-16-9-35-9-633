@@ -6,6 +6,8 @@ import org.springframework.web.bind.annotation.*;
 import java.util.ArrayList;
 import java.util.List;
 
+import static java.util.stream.Collectors.toList;
+
 
 /**
  * Created with IDEA
@@ -62,6 +64,15 @@ public class EmployeeController {
         return result;
     }
 
+
+    @GetMapping(params = {"gender"})
+    public List<Employee> getEmployeesByGender(@RequestParam("gender")String gender){
+
+
+        return list.stream().filter(person -> person.getGender().equals(gender)).collect(toList());
+
+
+    }
 
 
 
