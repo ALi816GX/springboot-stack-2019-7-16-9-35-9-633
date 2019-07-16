@@ -56,4 +56,17 @@ public class EmployeeControllerTest {
                 .andExpect(content().json(jsonResult));
 
     }
+
+    @Test
+    public void should_return_employees_when_call_get_employees_given_page_1_and_pageSize_5() throws Exception {
+
+        String jsonResult = "[{\"id\":0,\"name\":\"Leo0\",\"gender\":\"male\",\"age\":10},{\"id\":1,\"name\":\"Leo1\",\"gender\":\"male\",\"age\":11},{\"id\":2,\"name\":\"Leo2\",\"gender\":\"male\",\"age\":12},{\"id\":3,\"name\":\"Leo3\",\"gender\":\"male\",\"age\":13},{\"id\":4,\"name\":\"Leo4\",\"gender\":\"male\",\"age\":14}]";
+
+        mockMvc.perform(get("/employees?page=1&pageSize=5"))
+                .andDo(print())
+                .andExpect(status().isOk())
+                .andExpect(content().contentType("application/json;charset=UTF-8"))
+                .andExpect(content().json(jsonResult));
+
+    }
 }

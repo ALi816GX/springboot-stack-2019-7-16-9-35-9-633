@@ -53,4 +53,20 @@ public class CompanyControllerTest {
                 .andExpect(content().json(jsonResult));
 
     }
+
+
+    @Test
+    public void should_return_companies_when_call_get_companies_given_page_1_and_pageSize_5() throws Exception {
+
+        String jsonResult = "[{\"id\":0,\"name\":\"OOCL0\",\"age\":0,\"employees\":[{\"id\":0,\"name\":\"Leo0\",\"gender\":\"male\",\"age\":10},{\"id\":1,\"name\":\"Leo1\",\"gender\":\"male\",\"age\":11},{\"id\":2,\"name\":\"Leo2\",\"gender\":\"male\",\"age\":12}]},{\"id\":1,\"name\":\"OOCL1\",\"age\":1,\"employees\":null},{\"id\":2,\"name\":\"OOCL2\",\"age\":2,\"employees\":null},{\"id\":3,\"name\":\"OOCL3\",\"age\":3,\"employees\":null},{\"id\":4,\"name\":\"OOCL4\",\"age\":4,\"employees\":null}]";
+
+        mockMvc.perform(get("/companies?page=1&pageSize=5"))
+                .andDo(print())
+                .andExpect(status().isOk())
+                .andExpect(content().contentType("application/json;charset=UTF-8"))
+                .andExpect(content().json(jsonResult));
+
+    }
+
+
 }

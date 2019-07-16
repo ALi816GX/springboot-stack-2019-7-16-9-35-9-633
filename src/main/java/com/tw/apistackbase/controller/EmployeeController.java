@@ -1,5 +1,6 @@
 package com.tw.apistackbase.controller;
 
+import com.tw.apistackbase.model.Company;
 import com.tw.apistackbase.model.Employee;
 import org.springframework.web.bind.annotation.*;
 import java.util.ArrayList;
@@ -44,6 +45,21 @@ public class EmployeeController {
         }
 
         return employee;
+    }
+
+    @GetMapping(params = {"page", "pageSize"})
+    public List<Employee> getEmployeesByPaging(@RequestParam("page")int page,
+                                               @RequestParam("pageSize")int pageSize){
+
+        int startIndex = (page - 1) * pageSize;
+        int end = startIndex + pageSize;
+
+        List<Employee> result = new ArrayList<>();
+        for (int i = startIndex;i < end && i < list.size();i++){
+            result.add(this.list.get(i));
+        }
+
+        return result;
     }
 
 
