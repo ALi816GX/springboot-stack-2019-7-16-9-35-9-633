@@ -61,8 +61,8 @@ public class Employee implements Serializable {
 
 
     public static List<Employee> createEmployeesForTest(){
-        List<Employee> list = new ArrayList<>();
 
+        List<Employee> list = new ArrayList<>();
         for(int i = 0;i < 10;i++){
             list.add(new Employee(i,"Leo" + i ,"male",10+i));
         }

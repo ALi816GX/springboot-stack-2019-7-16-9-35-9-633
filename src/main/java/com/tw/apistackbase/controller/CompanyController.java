@@ -1,7 +1,6 @@
 package com.tw.apistackbase.controller;
 
 import com.tw.apistackbase.model.Company;
-import com.tw.apistackbase.model.Employee;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -36,6 +35,20 @@ public class CompanyController {
 
     }
 
+    @GetMapping("/{id}")
+    public Company getCompany(@PathVariable int id){
+
+        Company company = null;
+
+        for (Company temp:list){
+            if (id == temp.getId()){
+                company = temp;
+                break;
+            }
+        }
+
+        return company;
+    }
 
 
 }

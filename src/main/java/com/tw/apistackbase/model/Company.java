@@ -16,6 +16,7 @@ public class Company {
     private int id;
     private String name;
     private int age;
+    private List<Employee> employees;
 
 
     public Company() {
@@ -52,13 +53,29 @@ public class Company {
         this.age = age;
     }
 
+    public List<Employee> getEmployees() {
+        return employees;
+    }
+
+    public void setEmployees(List<Employee> employees) {
+        this.employees = employees;
+    }
 
     public static List<Company> createCompaniesForTest(){
-        List<Company> list = new ArrayList<>();
 
+        List<Employee> employees = new ArrayList<>();
+        for(int i = 0;i < 3;i++){
+            employees.add(new Employee(i,"Leo" + i ,"male",10+i));
+        }
+
+
+        List<Company> list = new ArrayList<>();
         for(int i = 0;i < 10;i++){
             list.add(new Company(i,"OOCL" + i ,i));
         }
+
+
+        list.get(0).setEmployees(employees);
 
         return list;
 
