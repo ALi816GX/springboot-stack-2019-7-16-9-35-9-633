@@ -1,7 +1,8 @@
 package com.tw.apistackbase.controller;
 
+import com.alibaba.fastjson.JSON;
+import com.tw.apistackbase.model.Company;
 import com.tw.apistackbase.model.Employee;
-import net.minidev.json.JSONObject;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,11 +12,7 @@ import org.springframework.http.MediaType;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 
-import java.util.Map;
-
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -85,27 +82,50 @@ public class CompanyControllerTest {
         mockMvc.perform(get("/companies/0/employees"))
                 .andDo(print())
                 .andExpect(status().isOk())
-                .andExpect(content().contentType("application/json;charset=UTF-8"))
+                .andExpect(content().contentType("text/plain;charset=UTF-8"))
                 .andExpect(content().json(jsonResult));
 
     }
 
 
     @Test
-    public void should_return_400_when_call_add_companies_given_company_null() throws Exception {
+    public void should_return_Success_when_call_add_companies_given_company() throws Exception {
 
-//        String jsonResult = "Success";
-//        Employee employee = new Employee(1, "2", "3", 4);
-//        String employeeContent = "";
+        String jsonResult = "Success";
+        Company company = new Company(1, "2", 3);
+        String companyContent = JSON.toJSONString(company);
 
         mockMvc.perform(post("/companies")
-                .contentType(MediaType.APPLICATION_JSON_UTF8))
-
-
+                .contentType(MediaType.APPLICATION_JSON_UTF8)
+                .content(companyContent)
+        )
                 .andDo(print())
-                .andExpect(status().is(400));
+                .andExpect(status().isOk())
+                .andExpect(content().contentType("text/plain;charset=UTF-8"))
+                .andExpect(content().string(jsonResult));
 
     }
+
+
+
+    @Test
+    public void should_return_Success_when_call_put_companies_given_company_and_id() throws Exception {
+
+        String jsonResult = "Success";
+        Company company = new Company(1, "2", 3);
+        String companyContent = JSON.toJSONString(company);
+
+        mockMvc.perform(put("/companies/1")
+                .contentType(MediaType.APPLICATION_JSON_UTF8)
+                .content(companyContent)
+        )
+                .andDo(print())
+                .andExpect(status().isOk())
+                .andExpect(content().contentType("text/plain;charset=UTF-8"))
+                .andExpect(content().string(jsonResult));
+
+    }
+
 
 
     @Test

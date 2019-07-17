@@ -49,7 +49,7 @@ public class CompanyController {
 
 
     @GetMapping(params = {"page", "pageSize"})
-    public List<Company> getCompaniesByPaging(@RequestParam("page")int page,
+    public List<Company> getCompaniesByPaging(@RequestParam(value = "page",defaultValue = "0")int page,
                                               @RequestParam("pageSize")int pageSize){
 
         int startIndex = (page - 1) * pageSize;
@@ -59,7 +59,7 @@ public class CompanyController {
         for (int i = startIndex;i < end && i < list.size();i++){
             result.add(this.list.get(i));
         }
-
+//        list.subList()
         return result;
     }
 
