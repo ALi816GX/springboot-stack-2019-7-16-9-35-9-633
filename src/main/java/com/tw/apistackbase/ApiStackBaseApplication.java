@@ -8,5 +8,6 @@ public class ApiStackBaseApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(ApiStackBaseApplication.class, args);
+		System.out.println("_____________________________________________");
 	}
 }
